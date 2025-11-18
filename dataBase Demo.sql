@@ -235,7 +235,7 @@ CREATE TABLE IF NOT EXISTS oc_cart (
   session_id  VARCHAR(64) DEFAULT NULL,
   product_id  INT UNSIGNED NOT NULL,
   quantity    INT NOT NULL DEFAULT 1,
-  option_data JSON DEFAULT NULL, -- تمثيل الخيارات
+  option_data JSON DEFAULT NULL, 
   date_added  DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   date_modified DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   CONSTRAINT fk_cart_customer FOREIGN KEY (customer_id) REFERENCES oc_customer(customer_id) ON DELETE CASCADE,
