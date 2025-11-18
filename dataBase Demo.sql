@@ -166,7 +166,7 @@ CREATE TABLE IF NOT EXISTS oc_seo_url (
 
 CREATE TABLE IF NOT EXISTS oc_option (
   option_id   INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-  type        VARCHAR(32) NOT NULL, -- select, radio, checkbox, text...
+  type        VARCHAR(32) NOT NULL, 
   sort_order  INT NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -305,7 +305,7 @@ CREATE TABLE IF NOT EXISTS oc_order_option (
 CREATE TABLE IF NOT EXISTS oc_order_total (
   order_total_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
   order_id       INT UNSIGNED NOT NULL,
-  code           VARCHAR(32) NOT NULL,   -- subtotal, tax, shipping, coupon, total
+  code           VARCHAR(32) NOT NULL,   
   title          VARCHAR(255) NOT NULL,
   `value`        DECIMAL(15,4) NOT NULL DEFAULT 0.0000,
   sort_order     INT NOT NULL DEFAULT 0,
@@ -345,7 +345,7 @@ CREATE TABLE IF NOT EXISTS oc_review (
   author       VARCHAR(64) NOT NULL,
   text         TEXT,
   rating       TINYINT NOT NULL DEFAULT 0,
-  status       TINYINT(1) NOT NULL DEFAULT 0, -- 0=Pending,1=Approved
+  status       TINYINT(1) NOT NULL DEFAULT 0, 
   date_added   DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   date_modified DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   CONSTRAINT fk_review_product FOREIGN KEY (product_id) REFERENCES oc_product(product_id) ON DELETE CASCADE,
