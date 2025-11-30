@@ -1,5 +1,6 @@
 package Home;
 
+import Pages.DeliveryInformationPage;
 import Pages.TermsAndConditionsPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -27,17 +28,20 @@ public class HomePage {
     By WishListLocator = By.linkText("Wish List");
     By NewsletterLocator = By.linkText("Newsletter");
     public HomePage(WebDriver driver) {
-
         this.driver = driver;
     }
-    //information pages
+
+    // Information pages
     public TermsAndConditionsPage clickTermsAndConditions() {
         driver.findElement(TermsConditionsLocator).click();
         return new TermsAndConditionsPage(driver);
     }
-    public void clickDeliveryInformation(){
+
+    public DeliveryInformationPage clickDeliveryInformation(){
         driver.findElement(DeliveryInformationLocator).click();
+        return new DeliveryInformationPage(driver);
     }
+
     public void clickAboutUs(){
         driver.findElement(AboutUsLocator).click();
     }
@@ -45,7 +49,8 @@ public class HomePage {
     public void clickPrivacyPolicy(){
         driver.findElement(PrivacyPolicyLocator).click();
     }
-    //customer serv click
+
+    // Customer service click
     public void clickContactUs() {
         driver.findElement(ContactUsLocator).click();
     }
@@ -58,8 +63,7 @@ public class HomePage {
         driver.findElement(SiteMapLocator).click();
     }
 
-
-    //Extras
+    // Extras
     public void clickBrands(){
         driver.findElement(BrandsLocator).click();
     }
@@ -67,6 +71,7 @@ public class HomePage {
     public void clickGiftCertifications(){
         driver.findElement(GiftCertificationsLocator).click();
     }
+
     public void clickAffiliate(){
         driver.findElement(AffiliateLocator).click();
     }
@@ -74,7 +79,8 @@ public class HomePage {
     public void clickSpecials(){
         driver.findElement(SpecialsLocator).click();
     }
-    //my account
+
+    // My account
     public void clickMyAccount() {
         driver.findElement(MyAccountLocator).click();
     }
@@ -91,8 +97,18 @@ public class HomePage {
         driver.findElement(NewsletterLocator).click();
     }
 
+    // Verification methods
+    public boolean isTermsAndConditionsDisplayed() {
+        return driver.findElement(TermsConditionsLocator).isDisplayed();
+    }
 
+    public String getCurrentUrl() {
+        return driver.getCurrentUrl();
+    }
 
+    public boolean isDeliveryInformationDisplayed() {
+        return driver.findElement(DeliveryInformationLocator).isDisplayed();
+    }
 
 
 

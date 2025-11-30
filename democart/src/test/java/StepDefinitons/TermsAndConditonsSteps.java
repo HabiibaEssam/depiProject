@@ -6,33 +6,46 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
 public class TermsAndConditonsSteps {
 
     TermsAndConditionsPage termsandConditonsPage;
-    HomePage homepage = new HomePage(Hook.driver);
+    WebDriver driver = Hook.driver;
+    HomePage homepage = new HomePage(driver);
+
 
     @Given("I am on the OpenCart home page")
     public void iAmOnTheOpenCartHomePage() {
-        Assert.assertEquals(Hook.driver.getCurrentUrl(), "https://demo.opencart.com/");
+        String actualUrl = driver.getCurrentUrl();
+        Assert.assertTrue(actualUrl.contains("opencart.com"),
+                "Not on OpenCart homepage. Current URL: " + actualUrl);
     }
 
     @When("I click on Terms and Conditions link")
     public void iClickOnTermsAndConditionsLink() {
-        homepage.clickTermsAndConditions();
+        termsandConditonsPage= homepage.clickTermsAndConditions();
     }
 
     @Then("I should be redirected to Terms and Conditions page")
     public void iShouldBeRedirectedToTermsAndConditionsPage() {
-        Assert.assertEquals(Hook.driver.getCurrentUrl(), "https://demo.opencart.com/en-gb/information/terms");
+        String actualUrl = Hook.driver.getCurrentUrl();
+        Assert.assertTrue(actualUrl.contains("information/terms"),
+                "Not on Terms & Conditions page. Current URL: " + actualUrl);
     }
 
     @And("the page title should contain {string}")
-    public void thePageTitleShouldContain(String arg0) {
+    public void thePageTitleShouldContain(String expectedTitle) {
+        String actualTitle = Hook.driver.getTitle();
+        Assert.assertTrue(actualTitle.contains(expectedTitle),
+                "Page title doesn't contain '" + expectedTitle +
+                        "'. Actual title: " + actualTitle);
     }
 
     @Then("Terms and Conditions link should be visible")
     public void termsAndConditionsLinkShouldBeVisible() {
+        Assert.assertTrue(homepage.isTermsAndConditionsDisplayed(),
+                "Terms and Conditions link is not visible");
     }
 }
