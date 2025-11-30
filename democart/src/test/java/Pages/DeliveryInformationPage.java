@@ -3,13 +3,13 @@ package Pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class TermsAndConditionsPage {
+public class DeliveryInformationPage {
 
     WebDriver driver;
 
     private By pageHeading = By.cssSelector("h1");
 
-    public TermsAndConditionsPage(WebDriver driver) {
+    public DeliveryInformationPage(WebDriver driver) {
         this.driver = driver;
     }
 
@@ -24,5 +24,10 @@ public class TermsAndConditionsPage {
     public String getCurrentUrl(){
         return driver.getCurrentUrl();
     }
+
+    public boolean isOnDeliveryInformationPage() {
+        return getCurrentUrl().contains("information/delivery");
+    }
+
 
 }
