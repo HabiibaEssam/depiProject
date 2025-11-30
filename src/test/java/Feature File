@@ -1,0 +1,32 @@
+Feature: Product Search
+
+  Scenario: Search for existing product
+    Given I am on the home page
+    When I search for "MacBook"
+    Then I should see products related to "MacBook"
+
+  Scenario: Search for non-existing product
+    Given I am on the home page
+    When I search for "XYZ123"
+    Then I should see "No products found"
+
+    Feature: Product Filters
+
+      Scenario: Filter products by category
+        Given I am on the product catalog page
+        When I filter by "Laptops"
+        Then I should see only products in "Laptops"
+
+        Feature: Product Sorting
+
+          Scenario: Sort products by price ascending
+            Given I am on the product catalog page
+            When I sort products by "Price: Low to High"
+            Then products should be displayed in ascending order of price
+
+            Feature: Product Details
+
+              Scenario: View product details
+                Given I am on the product catalog page
+                When I click on "iPhone"
+                Then I should see the product details page for "iPhone"
