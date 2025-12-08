@@ -6,16 +6,19 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 public class DriverFactory {
-
     private static final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
     public static WebDriver getDriver() {
         if (driver.get() == null) {
-            WebDriverManager.chromedriver().setup();
+
+            WebDriverManager.chromedriver()
+                    .driverVersion("142.0.7444.175")
+                    .setup();
+
             ChromeOptions opts = new ChromeOptions();
-            // uncomment headless if you want headless runs
-            // opts.addArguments("--headless=new");
             opts.addArguments("--start-maximized");
+            opts.addArguments("--remote-allow-origins=*");
+
             driver.set(new ChromeDriver(opts));
         }
         return driver.get();
@@ -28,4 +31,3 @@ public class DriverFactory {
         }
     }
 }
-
