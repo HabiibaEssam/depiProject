@@ -3,16 +3,17 @@ package Pages.Admin;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class AdminOrdersPage {
-    private final WebDriver driver;
 
-    private final By viewBtn = By.cssSelector("a[data-original-title='View']");
-    private final By orderStatusSelect = By.id("input-order-status");
-    private final By addHistoryBtn = By.id("button-history");
+public class AdminOrdersPage {
+    WebDriver driver;
 
     public AdminOrdersPage(WebDriver driver) {
         this.driver = driver;
     }
+
+    private By viewBtn =By.cssSelector("a[data-original-title='View']");
+    private By orderStatusSelect =By.id("input-order-status");
+    private By addHistoryBtn =By.id("button-history");
 
     public void viewFirstOrder() {
         driver.findElement(viewBtn).click();
@@ -23,5 +24,7 @@ public class AdminOrdersPage {
         driver.findElement(orderStatusSelect).sendKeys(statusVisibleText);
         driver.findElement(addHistoryBtn).click();
     }
+
 }
+
 

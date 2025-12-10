@@ -1,7 +1,7 @@
 Feature: Admin Login
 
   Scenario: Admin can login to OpenCart admin
-    Given admin opens admin login page
-    When admin provides valid credentials
-    And admin submits login
-    Then admin sees the dashboard
+    Given  Admin opens login page & press on login to login
+    When Admin enters valid email & password
+    And Admin submits login
+    Then Admin sees dashboard

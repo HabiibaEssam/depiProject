@@ -3,37 +3,31 @@ package StepDefinitions;
 import Pages.Admin.AdminDashboardPage;
 import Pages.Admin.AdminLoginPage;
 import io.cucumber.java.en.*;
+import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
 public class AdminLoginSteps {
+    WebDriver driver = Hooks.getDriver();
+    AdminDashboardPage adminDashboardPage = new AdminDashboardPage(driver);
+    AdminLoginPage adminLoginPage = new AdminLoginPage(driver);
 
-    private final AdminLoginPage loginPage;
-    private final AdminDashboardPage dashboard;
+    @Given("Admin opens login page & press on login to login")
+    public void adminlogin() {adminLoginPage.clickLogin();
 
-    public AdminLoginSteps() {
-        this.loginPage = new AdminLoginPage(Hooks.driver);
-        this.dashboard = new AdminDashboardPage(Hooks.driver);
     }
 
-    @Given("admin opens admin login page")
-    public void admin_opens_admin_login_page() {
-        loginPage.open("https://demo.opencart.com/admin/");
+    @When("Admin enters valid email & password")
+    public void login() {
+        adminLoginPage.enterUsername("demo");
+        adminLoginPage.enterPassword("demo");
     }
 
-    @When("admin provides valid credentials")
-    public void admin_provides_valid_credentials() {
-        loginPage.enterUsername("demo");
-        loginPage.enterPassword("demo");
+    @When("Admin submits login")
+    public void adminClickOnLogin() {
+        adminLoginPage.clickLogin();
     }
-
-    @When("admin submits login")
-    public void admin_submits_login() {
-        loginPage.clickLogin();
-    }
-
-    @Then("admin sees the dashboard")
-    public void admin_sees_the_dashboard() {
-        Assert.assertTrue(dashboard.isDashboardVisible(), "Dashboard should be visible after login");
+    @Then("Admin sees dashboard")
+    public void adminSeesDashboard() {
+        Assert.assertTrue(adminDashboardPage.isDashboardVisible(), "Dashboard should be visible after login");
     }
 }
-

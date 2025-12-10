@@ -7,22 +7,24 @@ import org.openqa.selenium.WebElement;
 import java.util.List;
 
 public class AdminProductsPage {
-    private final WebDriver driver;
+    WebDriver driver;
 
-    private final By addBtn = By.cssSelector("a[data-original-title='Add New']");
-    private final By productNameField = By.id("input-name1");
-    private final By metaTitleField = By.id("input-meta-title1");
-    private final By dataTab = By.linkText("Data");
-    private final By modelField = By.id("input-model");
-    private final By saveBtn = By.cssSelector("button[data-original-title='Save']");
-
-    private final By checkboxAll = By.name("selected[]");
-    private final By editBtn = By.cssSelector("a[data-original-title='Edit']");
-    private final By deleteBtn = By.cssSelector("button[data-original-title='Delete']");
-
-    public AdminProductsPage(WebDriver driver) {
+    public AdminProductsPage(WebDriver driver){
         this.driver = driver;
     }
+
+     By addBtn = By.cssSelector("a[data-original-title='Add New']");
+     By productNameField = By.id("input-name1");
+     By metaTitleField = By.id("input-meta-title1");
+     By dataTab = By.linkText("Data");
+     By modelField = By.id("input-model");
+     By saveBtn = By.cssSelector("button[data-original-title='Save']");
+
+     By checkboxAll = By.name("selected[]");
+     By editBtn = By.cssSelector("a[data-original-title='Edit']");
+     By deleteBtn = By.cssSelector("button[data-original-title='Delete']");
+
+
 
     public void clickAdd() {
         driver.findElement(addBtn).click();
@@ -36,10 +38,11 @@ public class AdminProductsPage {
         driver.findElement(saveBtn).click();
     }
 
+
     public boolean hasProductsList() {
         List<WebElement> list = driver.findElements(checkboxAll);
         return list.size() > 0;
-    }
+        }
 
     public void selectFirstProduct() {
         List<WebElement> list = driver.findElements(checkboxAll);
@@ -48,14 +51,13 @@ public class AdminProductsPage {
         }
     }
 
-    public void clickEdit() {
-        driver.findElement(editBtn).click();
-    }
-
     public void clickDeleteAndAccept() {
         driver.findElement(deleteBtn).click();
         // Accept JS alert
         driver.switchTo().alert().accept();
     }
+
+
 }
+
 
