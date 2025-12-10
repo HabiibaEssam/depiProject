@@ -7,7 +7,7 @@ public class DeliveryInformationPage {
 
     WebDriver driver;
 
-    private By pageHeading = By.cssSelector("h1");
+    private By pageHeading = By.xpath("//h1[contains(text(),'Delivery Information')]");
 
     public DeliveryInformationPage(WebDriver driver) {
         this.driver = driver;

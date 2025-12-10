@@ -15,8 +15,8 @@ public class Hook {
     public void SetUp(){
         driver = new FirefoxDriver();
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.get("https://demo.opencart.com/");
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+        driver.get("http://opencart.abstracta.us/");
         homePage = new HomePage(driver);
     }
     @After
